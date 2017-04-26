@@ -4,7 +4,8 @@
   "description": "",
   "main": "manageTeamMembers.js",
   "dependencies": {
-    "aws-sdk": "^2.41.0"
+    "aws-sdk": "^2.41.0",
+    "github": "^9.2.0"
   },
   "devDependencies": {
     "aws-mock-lambda-api-gateway": "*"
