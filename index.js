@@ -1,21 +1,13 @@
 "use strict";
 
-var AWS = require('aws-sdk');
-
-
-var config = {};
-
-if (!process.env.AWS_EXECUTION_ENV) {
+var AWS = require('aws-sdk'),
     config = {
         accessKeyId: process.env.aws_access_key,
         secretAccessKey: process.env.secret_access_key,
         region: process.env.aws_region
-    }
-}
+    }, GitHubApi = require("github"),
+    github = new GitHubApi({});
 
-var GitHubApi = require("github");
-
-var github = new GitHubApi({});
 github.authenticate({
     type: "token",
     token: process.env.github_token
@@ -32,8 +24,8 @@ exports.handler = function (event, context) {
 
             let getOutput = (callback) => {
                 const regionLength = data.Regions.length;
+                let found = regionLength;
                 data.Regions.map(function (region, index) {
-
 
                     var ec2 = new AWS.EC2(Object.assign(config, {
                         region: region.RegionName
@@ -41,30 +33,27 @@ exports.handler = function (event, context) {
 
                     ec2.describeAvailabilityZones({}, (err, zones) => {
 
-                        var zones = zones.AvailabilityZones.map((a) => {
+                        const foundZones = zones.AvailabilityZones.map((a) => {
                                 return a.ZoneName
                             }
                         ).join(" , ");
 
-                        output.push("- " + region.RegionName + " | " + zones)
+                        output.push("- " + region.RegionName + " | " + foundZones);
 
-                        if (regionLength === index + 1) {
+                        found--;
+                        if (found === 0) {
                             callback();
                         }
                     });
-
 
                 });
             };
 
             getOutput(() => {
-                console.log("here2");
                 github.repos.getReadme({
                     owner: 'alan01252',
                     repo: 'aws-regions-and-availability-zone-list',
                 }).then(function (readme) {
-
-                    console.log(output);
                     github.repos.updateFile({
                         owner: 'alan01252',
                         repo: 'aws-regions-and-availability-zone-list',
