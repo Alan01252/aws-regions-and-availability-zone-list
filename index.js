@@ -22,6 +22,8 @@ exports.handler = function (event, context) {
 
             let output = [];
 
+            output.push('# AWS Regions and Availability Zones List');
+
             let getOutput = (callback) => {
                 const regionLength = data.Regions.length;
                 let found = regionLength;
