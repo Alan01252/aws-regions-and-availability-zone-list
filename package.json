@@ -1,0 +1,12 @@
+{
+  "name": "manageTeamMembers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "manageTeamMembers.js",
+  "dependencies": {
+    "aws-sdk": "^2.41.0"
+  },
+  "devDependencies": {
+    "aws-mock-lambda-api-gateway": "*"
+  }
+}
