@@ -1,17 +1,22 @@
 "use strict";
 
 var AWS = require('aws-sdk'),
-    config = {
-        accessKeyId: process.env.aws_access_key,
-        secretAccessKey: process.env.secret_access_key,
-        region: process.env.aws_region
-    }, GitHubApi = require("github"),
+    GitHubApi = require("github"),
     github = new GitHubApi({});
 
 github.authenticate({
     type: "token",
     token: process.env.github_token
 });
+
+let config = {};
+if (!process.env.AWS_EXECUTION_ENV) {
+    config = {
+        accessKeyId: process.env.aws_access_key,
+        secretAccessKey: process.env.secret_access_key,
+        region: process.env.aws_region
+    };
+}
 
 
 exports.handler = function (event, context) {
