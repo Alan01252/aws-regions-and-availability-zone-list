@@ -1,8 +1,8 @@
 {
-  "name": "manageTeamMembers",
+  "name": "AWS Availability Zones List",
   "version": "1.0.0",
   "description": "",
-  "main": "manageTeamMembers.js",
+  "main": "",
   "dependencies": {
     "aws-sdk": "^2.41.0",
     "github": "^9.2.0"
