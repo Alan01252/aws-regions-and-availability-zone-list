@@ -20,9 +20,8 @@ exports.handler = function (event, context) {
     ec2.describeRegions({}, function (err, data) {
         if (!err) {
 
-            let output = [];
+            let output = {};
 
-            output.push('# AWS Regions and Availability Zones List');
 
             let getOutput = (callback) => {
                 const regionLength = data.Regions.length;
@@ -40,7 +39,7 @@ exports.handler = function (event, context) {
                             }
                         ).join(" , ");
 
-                        output.push("- " + region.RegionName + " | " + foundZones);
+                        output[region.RegionName] = foundZones;
 
                         found--;
                         if (found === 0) {
@@ -52,6 +51,17 @@ exports.handler = function (event, context) {
             };
 
             getOutput(() => {
+
+                var readmeText = [];
+                readmeText.push('# AWS Regions and Availability Zones List');
+
+                Object.keys(output)
+                    .sort()
+                    .forEach(function(region) {
+                        readmeText.push("- " + region + " | " + output[region]);
+                    });
+
+
                 github.repos.getReadme({
                     owner: 'alan01252',
                     repo: 'aws-regions-and-availability-zone-list',
@@ -62,7 +72,7 @@ exports.handler = function (event, context) {
                         path: 'README.md',
                         sha: readme.data.sha,
                         message: 'Updating regions and availability zones',
-                        content: new Buffer(output.join("\r\n")).toString('base64')
+                        content: new Buffer(readmeText.join("\r\n")).toString('base64')
                     }).then(function (result) {
                         console.log(result);
                     }).catch(function (err) {
