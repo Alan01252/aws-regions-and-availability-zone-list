@@ -14,5 +14,5 @@
 - us-west-1 | us-west-1a , us-west-1c
 - us-west-2 | us-west-2a , us-west-2b , us-west-2c
 ## About 
-This list is auto populated via a lambda based on the code inside this repository project. It updates this readme if there's any changes to regions/zones found
-This aws done as a proof of concept/fun and the code *seriously* needs tidying up 
+This list is auto populated via a lambda based on the code inside this repository. It updates this readme if there's any changes to regions/zones found
+This was done as a proof of concept/fun and the code *seriously* needs tidying up 
