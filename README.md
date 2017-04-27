@@ -13,3 +13,6 @@
 - us-east-2 | us-east-2a , us-east-2b , us-east-2c
 - us-west-1 | us-west-1a , us-west-1c
 - us-west-2 | us-west-2a , us-west-2b , us-west-2c
+## About 
+This list is auto populated via a lambda which runs inside this repository project and updates this readme if there's any changes found
+This aws done as a proof of concept/fun and the code *seriously* needs tidying up 
