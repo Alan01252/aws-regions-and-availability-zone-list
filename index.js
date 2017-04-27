@@ -26,6 +26,7 @@ exports.handler = function (event, context) {
         if (!err) {
 
             let output = {};
+            console.log(data);
 
 
             let getOutput = (callback) => {
@@ -38,6 +39,9 @@ exports.handler = function (event, context) {
                     }));
 
                     ec2.describeAvailabilityZones({}, (err, zones) => {
+
+
+                        console.log(zones);
 
                         const foundZones = zones.AvailabilityZones.map((a) => {
                                 return a.ZoneName
@@ -84,16 +88,20 @@ exports.handler = function (event, context) {
                             content: new Buffer(readmeText.join("\r\n")).toString('base64')
                         }).then(function (result) {
                             console.log(result);
+                            context.succeed();
                         }).catch(function (err) {
-                            console.log(err)
+                            context.fail(err);
                         });
 
+                    } else {
+                        context.succeed();
                     }
                 })
             });
 
         } else {
             console.log(err);
+            context.fail(err);
         }
     });
 };
