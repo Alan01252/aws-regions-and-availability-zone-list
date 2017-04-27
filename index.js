@@ -72,6 +72,12 @@ exports.handler = function (event, context) {
                     });
 
 
+
+                readmeText.push('## About ');
+                readmeText.push('This list is auto populated via a lambda which runs inside this repository project and updates this readme if there\'s any changes found');
+                readmeText.push('This aws done as a proof of concept/fun and the code *seriously* needs tidying up ');
+
+
                 github.repos.getReadme({
                     owner: 'alan01252',
                     repo: 'aws-regions-and-availability-zone-list',
@@ -88,13 +94,13 @@ exports.handler = function (event, context) {
                             content: new Buffer(readmeText.join("\r\n")).toString('base64')
                         }).then(function (result) {
                             console.log(result);
-                            context.succeed();
+                            context.succeed("Updated regions");
                         }).catch(function (err) {
                             context.fail(err);
                         });
 
                     } else {
-                        context.succeed();
+                        context.succeed("Nothing to change");
                     }
                 })
             });
