@@ -18,7 +18,7 @@ Resources:
         Fn::ImportValue:
           !Join ['-', [!Ref 'ProjectId', !Ref 'AWS::Region', 'LambdaTrustRole']]
       Events:
-        RunDaily:
-          Type: Schedle
+        Timer:
+          Type: Schedule
           Properties:
             Schedule: rate(1 day)
