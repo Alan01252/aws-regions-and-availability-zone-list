@@ -74,8 +74,8 @@ exports.handler = function (event, context) {
 
 
                 readmeText.push('## About ');
-                readmeText.push('This list is auto populated via a lambda based on the code inside this repository project. It updates this readme if there\'s any changes to regions/zones found');
-                readmeText.push('This aws done as a proof of concept/fun and the code *seriously* needs tidying up ');
+                readmeText.push('This list is auto populated via a lambda based on the code inside this repository. It updates this readme if there\'s any changes to regions/zones found');
+                readmeText.push('This was done as a proof of concept/fun and the code *seriously* needs tidying up ');
 
 
                 github.repos.getReadme({
