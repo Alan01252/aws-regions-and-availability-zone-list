@@ -55,9 +55,10 @@ exports.handler = function (event, context) {
                 var readmeText = [];
                 readmeText.push('# AWS Regions and Availability Zones List');
 
+
                 Object.keys(output)
                     .sort()
-                    .forEach(function(region) {
+                    .forEach(function (region) {
                         readmeText.push("- " + region + " | " + output[region]);
                     });
 
@@ -66,18 +67,23 @@ exports.handler = function (event, context) {
                     owner: 'alan01252',
                     repo: 'aws-regions-and-availability-zone-list',
                 }).then(function (readme) {
-                    github.repos.updateFile({
-                        owner: 'alan01252',
-                        repo: 'aws-regions-and-availability-zone-list',
-                        path: 'README.md',
-                        sha: readme.data.sha,
-                        message: 'Updating regions and availability zones',
-                        content: new Buffer(readmeText.join("\r\n")).toString('base64')
-                    }).then(function (result) {
-                        console.log(result);
-                    }).catch(function (err) {
-                        console.log(err)
-                    });
+
+                    if (readmeText.join("\r\n") !== new Buffer(readme.data.content, 'base64').toString("ascii")) {
+
+                        github.repos.updateFile({
+                            owner: 'alan01252',
+                            repo: 'aws-regions-and-availability-zone-list',
+                            path: 'README.md',
+                            sha: readme.data.sha,
+                            message: 'Updating regions and availability zones',
+                            content: new Buffer(readmeText.join("\r\n")).toString('base64')
+                        }).then(function (result) {
+                            console.log(result);
+                        }).catch(function (err) {
+                            console.log(err)
+                        });
+
+                    }
                 })
             });
 
