@@ -20,5 +20,5 @@ Resources:
       Events:
         RunDaily:
           Type: Schedle
-            Properties:
-              Schedule: rate(1 day)
+          Properties:
+            Schedule: rate(1 day)
