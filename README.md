@@ -1,5 +1,5 @@
 # AWS Regions and Availability Zones List
-- ap-northeast-1 | ap-northeast-1a , ap-northeast-1b , ap-northeast-1c
+- ap-northeast-1 | ap-northeast-1a , ap-northeast-1b , ap-northeast-1c , ap-northeast-1d
 - ap-northeast-2 | ap-northeast-2a , ap-northeast-2c
 - ap-south-1 | ap-south-1a , ap-south-1b
 - ap-southeast-1 | ap-southeast-1a , ap-southeast-1b , ap-southeast-1c
