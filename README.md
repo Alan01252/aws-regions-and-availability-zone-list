@@ -6,6 +6,7 @@
 - ap-southeast-2 | ap-southeast-2a , ap-southeast-2b , ap-southeast-2c
 - ca-central-1 | ca-central-1a , ca-central-1b
 - eu-central-1 | eu-central-1a , eu-central-1b , eu-central-1c
+- eu-north-1 | eu-north-1a , eu-north-1b , eu-north-1c
 - eu-west-1 | eu-west-1a , eu-west-1b , eu-west-1c
 - eu-west-2 | eu-west-2a , eu-west-2b , eu-west-2c
 - eu-west-3 | eu-west-3a , eu-west-3b , eu-west-3c
